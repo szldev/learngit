@@ -1,6 +1,63 @@
-Git is a version control system.
-Git is free software.
-Git is a distributed version control system.
-Git is free software distributed under the GPL.
+Git：分布式版本控制系统
 
-hello  world
+1)安装
+	在Windows上使用Git，从Git官网直接下载安装，启动程序：git-bash.exe
+2)配置用户信息
+	$ git config --global user.name "Your Name"
+	$ git config --global user.email "email@example.com"
+3)创建版本库
+	版本库(repository)：即被Git管理的目录，初始化后有.git文件夹，这个目录是Git来跟踪管理版本库的
+	初始化命令：
+		$ cd "目录的路径"
+		$ git init		//此目录称工作区
+	取消初始化：
+		# rm -rf .git	//删除.git目录即可
+4)提交和回退操作
+	a.提交到Git版本库
+		$ git add [file]	//将文件的修改add到暂存区
+		$ git add . 		//将工作区所有的修改添加到暂存区
+		$ git commit -m "修改备注"	//把暂存区的所有内容提交到当前分支
+	b.回退
+		在Git中，用HEAD表示当前版本，上一个版本是HEAD^，上上一个版本就是HEAD^^，
+		当然往上100个版本写100个^比较容易数不过来，所以写成HEAD~100。
+		命令：
+			$ git reset --hard HEAD^	//回退到上个版本
+			$ git reset --hard commit_id	//根据commit_id确定更新到哪个版本，commit_id只需写前七位
+		查看commit_id：
+			$ git log	//查看提交历史
+			$ git reflog	//查看命令历史
+	c.撤销修改
+		场景1：当你改乱了工作区某个文件的内容，想直接丢弃工作区的修改时，用命令git checkout -- [file]。
+			   git checkout其实是用版本库里的版本替换工作区的版本
+		场景2：当你不但改乱了工作区某个文件的内容，还添加到了暂存区时，想丢弃修改，分两步，第一步用命令git reset HEAD [file]，就回到了场景1，第二步按场景1操作。
+		场景3：已经提交了不合适的修改到版本库时，想要撤销本次提交，参考[b.回退]，不过前提是没有推送到远程库。
+	d.删除文件
+		$ git rm [file]
+		$ git commit -m "remove"
+
+5)其他常用命令
+	a.查看Git状态
+		$ git status
+	b.查看当前分支
+		$ git branch
+	c.得到远程服务器的名称
+		$ git remote
+		
+6)添加远程库
+	-->配置钥匙
+		a.在本地库生成密钥	ssh-keygen -t rsa -C"email.com"
+		 产生的密钥会在默认的.ssh文件下，有三个文件id_rsa ,id_rsa.pub ,known_hosts.
+		b.登录GitHub，进入Settings界面，选择SSH and GPG keys, 点击 new SSH key, title自己定义，下面的key 填入 1中id_rsa.pub文件中的内容。然后add 即可
+		c.测试：ssh -T git@github.com 
+		  出现Hi XXX! You've successfully authenticated, but GitHub does not provide shell access. 表示链接成功。
+	-->本地与远程库的同步及推送
+		a.在github新建一个库
+		b.本地添加远程库 $ git remote add origin [url]	//--origin 是远程库的名字，url 是远程库的URL
+		c.把本地库的内容推送到远程，$ git push -u origin master		//第一次推送master分支的所有内容(-u参数)
+		  此后，每次本地提交后，推送最新修改到远程库 $ git push origin master
+		d.从远程库克隆一个本地库  $ git clone [url]
+		e.推送自己的最新版本时，都需要确保当前版本是远程库最新的
+		  从远程服务器拉取版本 $ git pull
+		  
+	
+	

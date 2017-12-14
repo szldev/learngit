@@ -1,0 +1,34 @@
+创建新的分支
+	$ git branch <name>
+切换到新分支
+	$ git checkout <name>
+创建并切换(加上-b参数)
+	$ git checkout -b <name>		//<name> 分支名
+查看分支
+	$ git branch		//当前分支前面会标一个*号
+	$ git branch -r  	//查看远程分支
+把<name>分支的工作成果合并到当前分支上
+	$ git merge <name>		//Fast-forward是“快进模式”，也就是直接把当前分支指向<name>的当前提交
+	$ git merge --no-ff -m "merge with no-ff" <name>	//本次合并要创建一个新的commit，所以加上-m参数，把commit描述写进去
+						//加上--no-ff参数就可以用普通模式合并，合并后的历史有分支，而fast forward合并就看不出来曾经做过合并
+删除分支
+	$ git branch -d <name>
+	$ git branch -D <name>	//强行删除,一般用于删除没有合并的分支
+查看分支合并情况
+	$ git log --graph --pretty=oneline --abbrev-commit	//--graph查看分支合并图
+
+bug分支(工作区的修改没提交时需切换分支调另一分支的bug)
+	当当前分支有未提交的修改时，要想切换分支做别的工作，可以用 $ git stash 命令把当前工作现场先“储藏”起来，
+	切换回本分支后，可以通过 $ git stash list 命令，查看储藏的位置，恢复有两种方法：
+	一是用 $ git stash apply 恢复，但是恢复后，stash内容并不删除，你需要用 $ git stash drop 来删除;
+	另一种方式是用 $ git stash pop，恢复的同时把stash内容也删了;
+	你可以多次stash，恢复的时候，先用git stash list查看，然后恢复指定的stash，用命令：$ git stash apply stash@{0}
+
+推送到远程分支
+	$ git push origin branch-name	//如果推送失败，先用git pull抓取远程的新提交
+在本地创建和远程分支对应的分支
+	$ git checkout -b branch-name origin/branch-name	//本地和远程分支的名称最好一致
+建立本地分支和远程分支的关联
+	$ git branch --set-upstream branch-name origin/branch-name
+从远程抓取分支
+	$ git pull		//如果有冲突，要先处理冲突。

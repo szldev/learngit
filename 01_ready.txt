@@ -24,7 +24,7 @@ Git：分布式版本控制系统
 			$ git reset --hard HEAD^	//回退到上个版本
 			$ git reset --hard commit_id	//根据commit_id确定更新到哪个版本，commit_id只需写前七位
 		查看commit_id：
-			$ git log	//查看提交历史
+			$ git log	//查看提交历史  --pretty=oneline  简洁显示
 			$ git reflog	//查看命令历史
 	c.撤销修改
 		场景1：当你改乱了工作区某个文件的内容，想直接丢弃工作区的修改时，用命令git checkout -- [file]。
@@ -45,7 +45,7 @@ Git：分布式版本控制系统
 	-->本地与远程库的同步及推送
 		a.在github新建一个库
 		b.本地添加远程库 $ git remote add origin [url]	//--origin 是远程库的名字，url 是远程库的URL
-		c.把本地库的内容推送到远程，$ git push -u origin master		//第一次推送master分支的所有内容(-u参数)
+		c.把本地库的内容推送到远程，$ git push -u origin master		//第一次推送master分支的所有内容(-u参数)，-f 强制提交
 		  此后，每次本地提交后，推送最新修改到远程库 $ git push origin master
 		d.从远程库克隆一个本地库  $ git clone [url]
 		e.推送自己的最新版本时，都需要确保当前版本是远程库最新的

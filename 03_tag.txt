@@ -1,0 +1,21 @@
+在当前分支打标签
+	$ git tag <name>	//默认标签打在最新提交的commit上
+	$ git tag <name> [commit_id] 	//对应的提交打标签
+查看所有标签
+	$ git tag
+查看历史提交的id
+	$ git log --pretty=oneline --abbrev-commit
+查看标签信息
+	$ git show <tagname>
+创建带有说明的标签
+	$ git tag -a v0.1 -m "version 0.1 released" 3628164		//-a指定标签名，-m指定说明文字
+删除标签
+	$ git tag -d v0.1
+
+标签推送到远程
+	$ git push origin <tagname>
+	$ git push origin --tags	//一次性推送全部尚未推送到远程的本地标签
+删除已经推送到远程的标签
+	1)先从本地删除：$ git tag -d v0.9
+	2)从远程删除。删除命令也是push：$ git push origin :refs/tags/v0.9
+	

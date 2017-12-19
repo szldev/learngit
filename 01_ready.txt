@@ -36,7 +36,7 @@ Git：分布式版本控制系统
 		$ git commit -m "remove"
 		
 5)添加远程库
-	-->配置钥匙
+	-->配置SSH Key
 		a.在本地库生成密钥	ssh-keygen -t rsa -C"email.com"
 		 产生的密钥会在默认的.ssh文件下，有三个文件id_rsa ,id_rsa.pub ,known_hosts.
 		b.登录GitHub，进入Settings界面，选择SSH and GPG keys, 点击 new SSH key, title自己定义，下面的key 填入 1中id_rsa.pub文件中的内容。然后add 即可

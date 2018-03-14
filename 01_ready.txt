@@ -5,6 +5,9 @@ Git：分布式版本控制系统
 2)配置用户信息
 	$ git config --global user.name "Your Name"
 	$ git config --global user.email "email@example.com"
+  取消配置的用户名和密码:
+        $ git config --global --unset user.name "Your Name"
+        $ git config --global --unset user.email "email@example.com"
 3)创建版本库
 	版本库(repository)：即被Git管理的目录，初始化后有.git文件夹，这个目录是Git来跟踪管理版本库的
 	初始化命令：

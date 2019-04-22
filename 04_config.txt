@@ -28,4 +28,6 @@ st表示status：
 	查看用户名和邮箱地址：
 		$ git config user.name
 		$ git config user.email
-	
+-->删除配置信息：
+	$ git config --global --unset user.name
+	$ git config --global --unset user.email
